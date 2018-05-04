@@ -10,10 +10,11 @@ body {
 
 h1{
 	font-size: 50px;
+	font-weight:300px;
 }
  
 path { 
-  stroke: steelblue;
+  stroke: rgb(180, 70, 98);
   stroke-width: 2;
   fill: none;
 }
@@ -43,15 +44,14 @@ var	margin = {top: 30, right: 20, bottom: 30, left: 50},
 //var parseTime = d3.timeParse("%Y");
 
 // Set the ranges
-var	x = d3.time.scale().range([0, width]);
-
+var	x = d3.scale.linear().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
  
 // Define the axes
 // var	xAxis = d3.svg.axis().scale(x)
 // 	.orient("bottom").ticks(d3.time.format("%Y"));
 
-	 var xAxis = d3.svg.axis()
+var xAxis = d3.svg.axis()
               .scale(x)
               .orient("bottom")
               .ticks(10);
@@ -61,7 +61,7 @@ var	yAxis = d3.svg.axis().scale(y)
  
 // Define the line
 var	valueline = d3.svg.line()
-	.x(function(d) { return x(d.date); })
+	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Attendance); });
     
 // Adds the svg canvas
@@ -76,7 +76,7 @@ var	svg = d3.select("body")
 d3.csv("broadway.csv", function(error, data) {
 	data.forEach(function(d) {
 		d.date = d.Year;
-		console.log(d.date);
+		//console.log(d.date);
 		d.Attendance = +d.Attendance;
 	});
  
