@@ -2,7 +2,15 @@
 <meta charset="utf-8">
 <style> /* set the CSS */
  
-body { font: 12px Arial;}
+body { 
+	font: 12px Arial;
+	background:white;
+	margin-left:50px;
+}
+
+h1{
+	font-size: 50px;
+}
  
 path { 
   stroke: steelblue;
@@ -13,14 +21,14 @@ path {
 .axis path,
 .axis line {
 	fill: none;
-	stroke: grey;
+	stroke:grey;
 	stroke-width: 1;
 	shape-rendering: crispEdges;
 }
- 
+
 </style>
 <body>
- 
+<h1>Attendance trends at Broadway perfromances [1990-2016]</h1>
 <!-- load the d3.js library -->	
 <script src="http://d3js.org/d3.v3.min.js"></script>
  
@@ -28,11 +36,11 @@ path {
  
 // Set the dimensions of the canvas / graph
 var	margin = {top: 30, right: 20, bottom: 30, left: 50},
-	width = 600 - margin.left - margin.right,
-	height = 270 - margin.top - margin.bottom;
+	width = 1500 - margin.left - margin.right,
+	height = 800 - margin.top - margin.bottom;
  
 // Parse the date / time
-var parseDate = d3.timeParse("%y");
+//var parseTime = d3.timeParse("%Y");
 
 // Set the ranges
 var	x = d3.time.scale().range([0, width]);
