@@ -5,7 +5,7 @@
 body { 
 	font: 12px Arial;
 	background:white;
-	margin-left:150px;
+	margin-left:250px;
 	background: black;
 }
 
@@ -13,6 +13,7 @@ h1{
 	font-size: 50px;
 	font-weight:300px;
 	color:whitesmoke;
+	margin-left:100px;
 }
  
 path { 
@@ -49,7 +50,11 @@ path {
   stroke-width: 2px;
   stroke-dasharray: 3,3;
 }
-
+svg text{
+	fill:white;
+	font-size: 25px;
+	font-weight:bold;
+}
 </style>
 <body>
 <h1>Attendance trends at Broadway performances [1990-2016]</h1>
@@ -59,7 +64,7 @@ path {
 <script>
  
 // Set the dimensions of the canvas / graph
-var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+var	margin = {top: 30, right: 20, bottom: 50, left: 100},
 	width = 1500 - margin.left - margin.right,
 	height = 800 - margin.top - margin.bottom;
  
@@ -117,12 +122,28 @@ d3.csv("broadway.csv", function(error, data) {
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis);
+	
+	// text label for the x axis
+	svg.append("text")      // text label for the x axis
+        .attr("x", width/2 )
+        .attr("y",  height+margin.bottom )
+        .style("text-anchor", "bottom")
+        .text("Year");
  
 	// Add the Y Axis
 	svg.append("g")		
 		.attr("class", "y axis")
 		.call(yAxis);
- 
+
+	// text label for the y axis
+	svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+	  .attr("dy","1em")
+      .style("text-anchor", "middle")
+      .text("Attendance");
+
     });
 
     //Add tooltips
